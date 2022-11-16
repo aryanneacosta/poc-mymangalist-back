@@ -19,7 +19,7 @@ Body: {
   "serie": "SPYxFAMILY", 
   "author": "Tatsuya Endo", 
   "genre": "shounen", 
-  "volume": "1", 
+  "volume": 1, 
   "image": "https://m.media-amazon.com/images/I/71RPJe1eVCL.jpg" 
  }
  
