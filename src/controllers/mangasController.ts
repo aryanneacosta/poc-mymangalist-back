@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { findMangaList, insertNewManga, ratingManga, deletingManga } from '../repositories/mangasRepository.js';
+import { findMangaList, insertNewManga, ratingManga, deletingManga, filteringManga } from '../repositories/mangasRepository.js';
 import { NewManga, UpdateManga } from '../protocols/manga.js';
 import { NewMangaSchema, UpdateMangaSchema } from '../schemas/mangasSchema.js';
 
@@ -45,9 +45,21 @@ async function deleteManga(req: Request, res: Response) {
     res.send(`${mangaDeleted.rowCount} manga apagado`);
 }
 
+async function filterManga(req: Request, res: Response) {
+    const { genre } = req.query;
+
+    if (genre !== 'shounen' && genre !== 'shoujo' && genre !== 'seinen' && genre !== 'josei' && genre !== 'ecchi') {
+        return res.status(400).send('Insira um gênero de manga válido');
+    }
+    
+    const mangaListByGenre = await filteringManga(String(genre));
+    res.send(mangaListByGenre.rows);
+}
+
 export {
     getMangaList,
     postManga,
     updateManga,
-    deleteManga
+    deleteManga,
+    filterManga
 }

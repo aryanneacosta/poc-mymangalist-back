@@ -18,9 +18,14 @@ async function deletingManga(mangaId: number): Promise<QueryResult> {
     return connection.query('DELETE FROM mangas WHERE id = $1;', [mangaId]);
 }
 
+async function filteringManga(genre: string) {
+    return connection.query('SELECT * FROM mangas WHERE genre = $1;', [genre]);
+}
+
 export {
     findMangaList,
     insertNewManga,
     ratingManga,
-    deletingManga
+    deletingManga,
+    filteringManga
 }
