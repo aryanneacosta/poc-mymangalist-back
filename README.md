@@ -15,7 +15,7 @@ You can add your favorite mangas and this API will organize it for you.
 # Routes
 
 POST: /manga
-Body: { 
+- Body: { 
   "serie": "SPYxFAMILY", 
   "author": "Tatsuya Endo", 
   "genre": "shounen", 
@@ -26,7 +26,7 @@ Body: {
 GET: /manga
  
 PUT: /rate
-Body: {
+- Body: {
   "id": 1,
   "status": "read",
   "rating": "5.0",
