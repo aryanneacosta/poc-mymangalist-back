@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { findMangaList, insertNewManga, ratingManga, deletingManga } from '../repositories/mangasRepository.js';
-import { MangaEntity, NewManga, UpdateManga } from '../protocols/manga.js';
+import { NewManga, UpdateManga } from '../protocols/manga.js';
 import { NewMangaSchema, UpdateMangaSchema } from '../schemas/mangasSchema.js';
 
 async function getMangaList(req: Request, res: Response) {
@@ -38,6 +38,10 @@ async function deleteManga(req: Request, res: Response) {
     const mangaId = req.params.mangaId;
 
     const mangaDeleted = await deletingManga(Number(mangaId));
+    if (mangaDeleted.rowCount === 0) {
+        return res.send(`Nenhum manga com esse id foi encontrado`);
+    }
+
     res.send(`${mangaDeleted.rowCount} manga apagado`);
 }
 
