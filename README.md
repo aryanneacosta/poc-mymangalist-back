@@ -12,7 +12,7 @@ You can add your favorite mangas and this API will organize it for you.
 - Rate your manga once you've finished it, including a description on how you've liked it.
 - Delete a manga from your database.
 
-# Rotes
+# Routes
 
 POST: /manga
 Body: { 
